@@ -3,3 +3,6 @@ myvenv
 db.sqlite3
 __pycache__/
 *.pyc
+.idx
+dev.nix
+.idea
