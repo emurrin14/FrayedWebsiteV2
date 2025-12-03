@@ -144,3 +144,42 @@ def success_view(request):
 
 def cancel_view(request):
    return render(request, 'cancel.html')
+
+
+# LOGIN, SIGNUP, AND AUTH LOGIC
+def signup_view(request):
+    if request.method == "POST":
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # auto login after signup
+            return redirect("/")  # redirect to home
+    else:
+        form = CustomUserCreationForm()
+
+    return render(request, "signup.html", {"form": form})
+
+
+def login_view(request):
+    if request.method == "POST":
+        form = CustomLoginForm(request, data=request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get("username")
+            password = form.cleaned_data.get("password")
+
+            user = authenticate(request, email=email, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect("/")
+            else:
+                messages.error(request, "Invalid email or password.")
+    else:
+        form = CustomLoginForm()
+
+    return render(request, "login.html", {"form": form})
+
+
+def logout_view(request):
+    logout(request)
+    return redirect("/")
