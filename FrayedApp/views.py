@@ -9,6 +9,8 @@ from .forms import CustomLoginForm, CustomUserCreationForm
 import json
 from django.views.decorators.http import require_POST
 from django.urls import reverse
+from django.contrib.auth import login, authenticate
+from django.contrib import messages
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -160,24 +162,30 @@ def signup_view(request):
     return render(request, "signup.html", {"form": form})
 
 
+
 def login_view(request):
     if request.method == "POST":
         form = CustomLoginForm(request, data=request.POST)
+
         if form.is_valid():
             email = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
 
-            user = authenticate(request, email=email, password=password)
-
+            user = authenticate(request, username=email, password=password)
             if user is not None:
                 login(request, user)
                 return redirect("/")
             else:
                 messages.error(request, "Invalid email or password.")
+        else:
+            messages.error(request, "Please correct the errors below.")
+
     else:
         form = CustomLoginForm()
 
     return render(request, "login.html", {"form": form})
+
+
 
 
 def logout_view(request):

@@ -1,0 +1,134 @@
+:root{
+    --main: #ffffff;
+    --accent: #005c48;
+    --accenthover: #013328;
+    --border2px: solid #ccc 2px;
+    --border1px: solid #ccc 1px; 
+    --accenthoveropposite: #2f181b;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+  /* INPUT STRYLING */
+  input {
+    background-color: #fff;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    color: #535353;
+    padding: 10px 5px;
+    width: 100%;
+    font-size: 0.8rem;
+    border-radius: 0;
+    outline: none;
+  }
+  
+  /* prevent focus change */
+  input:focus {
+    background-color: #fff;
+    border-bottom: 2px solid #454545;
+    color: #535353;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  /* override browser autofill background */
+  input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+    -webkit-text-fill-color: #535353 !important;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+  .loginContainer{
+      display: flex;
+      flex-direction: column;
+      width: 28rem;
+      background-color: white;
+      border: 2px #ccc solid;
+      overflow: hidden;
+      box-sizing: border-box;
+      border-radius: 1.4rem;
+      margin: auto auto;
+      padding: 2rem 0;
+  }
+  .loginContainer img{
+      width: 60%;
+  }
+  .loginLogo{
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 1rem;
+  }
+  .loginText{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .loginContainer h1{
+    margin: 0 !important;
+  }
+  .loginContainer p{
+    margin: 0 !important;
+  }
+  .loginEmailContainer{
+    margin-bottom: 1.4rem;
+  }
+  .loginPassword1Container{
+    margin-bottom: 1.4rem;
+  }
+  .loginFormContainer{
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    padding: 0 2rem;
+  }
+  .loginContainer .loginButton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .loginContainer button{
+    width: 20rem;
+    height: 3rem;
+    background-color: var(--accenthover);
+    color: white;
+    border-radius: .8rem;
+    font-size: 1.2rem;
+    margin: 2rem 0;
+    cursor: pointer;
+  }
+  .loginContainer button:hover{
+    background-color: var(--accent);
+  }
+  .signUpLink{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  .signUpLink a{
+    text-decoration: underline;
+  }
+  .formErrors{
+    color: red;
+  }
+  
+  
+  @media (max-width: 768px){
+    .loginContainer{
+      width: 20rem;
+    }
+  }

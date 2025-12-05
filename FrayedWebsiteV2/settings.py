@@ -33,7 +33,16 @@ SECRET_KEY = 'django-insecure-vt_!+e6yg+qov70q4x&n!e5zp28l825j3a_2_ed9y2!qtr+_7p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    ".cloudworkstations.dev",   # allow any subdomain
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.cloudworkstations.dev",
+]
+
 
 
 # Application definition
