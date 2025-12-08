@@ -9,8 +9,10 @@ from .forms import CustomLoginForm, CustomUserCreationForm
 import json
 from django.views.decorators.http import require_POST
 from django.urls import reverse
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from taggit.models import Tag
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
@@ -38,6 +40,18 @@ def Product_Detail(request, slug):
         'product': product,
    }
    return render(request, 'product.html', context)
+
+
+def producttags_view(request, tag_slug):
+    tag = get_object_or_404(Tag, slug=tag_slug)
+    products = Product.objects.filter(tags__slug__iexact=tag_slug).distinct()
+
+    context = {
+        'tag': tag,
+        'products': products,
+    }
+    return render(request, 'producttags.html', context)
+
 
 
 def cart(request):
@@ -191,3 +205,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("/")
+
+
+def coming_soon_view(request):
+    return render(request, 'comingsoon.html') 

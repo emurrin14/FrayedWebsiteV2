@@ -19,18 +19,23 @@
     <a href="{% url 'cart' %}">
       <img id="cartBtn" src="{% static 'images/cart.svg' %}" alt="Cart" />
     </a>
+    {% if not user.is_authenticated %}
+    <a href="{% url 'login' %}">
+      <img id="profileBtnIfCond" src="{% static 'images/profile.svg' %}" alt="Profile" />
+    </a>
+    {% else %}
     <img id="profileBtn" src="{% static 'images/profile.svg' %}" alt="Profile" />
+    {% endif %}
   </div>
   <div id="profileDropdown" class="profileDropdown">
     {% if user.is_authenticated %}
       <a href="{% url 'index' %}">Account</a>
-      <a href="{% url 'index' %}">Log Out</a>
+      <a href="{% url 'logout' %}">Log Out</a>
     {% else %}
-      <a href="{% url 'index' %}">Account</a>
-      <a href="{% url 'index' %}">Log In</a>
+
     {% endif %}
     {% if user.is_authenticated and user.is_staff %}
-      <p>Admin Panel</p>
+      <p>Admin</p>
     {% endif %}
   </div>
 </header>

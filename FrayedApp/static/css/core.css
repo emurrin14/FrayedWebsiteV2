@@ -154,6 +154,11 @@ background-size: 100% 0.1em;
   display: inline-block;
   cursor: pointer;
 }
+.headerRight #probileBtnIfCond{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
 .profileDropdown {
   position: absolute;
   width: 6rem;
