@@ -3,7 +3,11 @@
 {% block title %}Cart{% endblock %}
 {% block extra_head %}
 <link rel="stylesheet" href="{% static 'css/cart.css' %}" />
-<script src="https://js.stripe.com/clover/stripe.js"></script>
+<script>
+  window.stripePublicKey = "{{ STRIPE_PUBLISHABLE_KEY }}";
+</script>
+<script src="https://js.stripe.com/v3/"></script>
+<script src="{% static 'js/cart.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -54,20 +58,19 @@
           </div>
       </div>
       <div class="ItemPrice">
-        {{ item.product.price }}
+        ${{ item.product.price_display }}
       </div>
       <div class="ItemQuantity">
         {{ item.quantity }}
       </div>
       <div class="ItemTotal">
-        {{ item.subtotal }}
+        ${{ item.subtotal_display }}
       </div>
     </div>
   {%endfor%}
   <div class="CheckoutContainer">
-    <form action="{% url 'create-checkout-session' %}" method="POST">
-      <button type="submit" id="checkout-button">Checkout</button>
-    </form>
+      {% csrf_token %}
+      <button id="checkout-button">Checkout</button>
   </div>
 </div>
 {%else%}

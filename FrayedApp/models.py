@@ -24,6 +24,10 @@ class Product(models.Model):
     """ returns first image associated w product, if not image, none """
     first_image = self.images.first()
     return first_image.image if first_image else None
+
+  @property
+  def price_display(self):
+    return f"{self.price / 100:.2f}"
   
   def save(self, *args, **kwargs):
       if not self.slug:
@@ -109,6 +113,8 @@ class CartItem(models.Model):
         else:
             return self.product.price * self.quantity
 
+    def subtotal_display(self):
+        return f"{self.subtotal() / 100:.2f}"  # assuming price is in cents
 
     def __str__(self):
         return f"{self.quantity} x {self.product.title} in Cart {self.cart.pk}"

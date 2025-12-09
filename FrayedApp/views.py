@@ -28,6 +28,9 @@ def index(request):
         'shirt_products': shirt_products,
         'jacket_products': jacket_products,
     }
+
+
+    
     return render(request, 'index.html', context)
 
 
@@ -131,27 +134,100 @@ def remove_from_cart(request, item_id):
     return redirect("cart")
 
 
+# @csrf_exempt
+# def create_checkout_session(request):
+#     YOUR_DOMAIN = 'http://localhost:8000'
+#     if request.method == "POST":
+#         try:
+#             checkout_session = stripe.checkout.Session.create(
+#                 line_items=[
+#                     {
+#                         'price': 'price_1SUIoeH81M5unIKcxNmKPert',  # replace with Price ID
+#                         'quantity': 1,
+#                     },
+#                 ],
+#                 mode='payment',
+#                 success_url=YOUR_DOMAIN + '/success/',
+#                 cancel_url=YOUR_DOMAIN + '/cancel/',
+#             )
+#             return HttpResponseRedirect(checkout_session.url)
+#         except Exception as e:
+#             return JsonResponse({'error': str(e)})
+#     else:
+#         return JsonResponse({'error': 'Invalid request method'})
+
+
 @csrf_exempt
 def create_checkout_session(request):
-    YOUR_DOMAIN = 'http://localhost:8000'
-    if request.method == "POST":
-        try:
-            checkout_session = stripe.checkout.Session.create(
-                line_items=[
-                    {
-                        'price': 'price_1SUIoeH81M5unIKcxNmKPert',  # replace with Price ID
-                        'quantity': 1,
-                    },
-                ],
-                mode='payment',
-                success_url=YOUR_DOMAIN + '/success/',
-                cancel_url=YOUR_DOMAIN + '/cancel/',
-            )
-            return HttpResponseRedirect(checkout_session.url)
-        except Exception as e:
-            return JsonResponse({'error': str(e)})
-    else:
-        return JsonResponse({'error': 'Invalid request method'})
+    cart = get_cart(request)
+
+    if cart.items.count() == 0:
+        return JsonResponse({"error": "Cart is empty."}, status=400)
+
+    line_items = []
+
+    for item in cart.items.select_related(
+        "product", "variant__size", "variant__color"
+    ):
+
+        product = item.product
+        variant = item.variant
+
+        # Product name with variant info
+        name = product.name
+        details = []
+        if variant:
+            if variant.size:
+                details.append(f"Size: {variant.size.name}")
+            if variant.color:
+                details.append(f"Color: {variant.color.name}")
+        if details:
+            name += f" ({', '.join(details)})"
+
+        # Product image (first image)
+        image_url = None
+        if product.image0:
+            image_url = product.image0.url
+            if not image_url.startswith("http"):
+                image_url = request.build_absolute_uri(image_url)
+
+        # Stripe line item
+        line_item = {
+            "price_data": {
+                "currency": "usd",
+                "unit_amount": product.price,  # Stripe uses cents
+                "product_data": {
+                    "name": name,
+                    "images": [image_url] if image_url else [],
+                },
+            },
+            "quantity": item.quantity,
+        }
+
+        line_items.append(line_item)
+
+    # Optional discount code (Stripe Promotion Code ID)
+    promo_code = request.GET.get("promo_code")
+    discounts = []
+    if promo_code:
+        discounts.append({"promotion_code": promo_code})
+
+    try:
+        session = stripe.checkout.Session.create(
+            mode="payment",
+            payment_method_types=["card"],
+            line_items=line_items,
+            discounts=discounts if discounts else None,
+            success_url=request.build_absolute_uri(reverse("success")),
+            cancel_url=request.build_absolute_uri(reverse("cancel")),
+        )
+
+        return JsonResponse({"id": session.id})
+
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=400)
+
+
 
 
 def success_view(request):
