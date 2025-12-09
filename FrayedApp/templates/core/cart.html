@@ -22,10 +22,10 @@
 
 {%if items%}
 <div class="CartInfoTopbar">
-  <p>Item</p>
+  <p>Product</p>
   <p>Price</p>
   <p>Quantity</p>
-  <p>Total</p>
+  <p>Subtotal</p>
 </div>
 <div class="CartContainer">
   {%for item in items%}
@@ -51,10 +51,12 @@
                 <p class="ItemVariant">Not In Stock</p>
               {%endif%}
             </div>
+
             <form method="post" action="{% url 'remove_from_cart' item.id %}" id="removeFromCartForm">
               {% csrf_token %}
               <button type="submit" id="removeFromCartButton" class="ItemRemove">Remove</button>
             </form>
+
           </div>
       </div>
       <div class="ItemPrice">
@@ -68,10 +70,18 @@
       </div>
     </div>
   {%endfor%}
-  <div class="CheckoutContainer">
-      {% csrf_token %}
-      <button id="checkout-button">Checkout</button>
-  </div>
+    <div class="CheckoutContainer">
+        <div class="checkoutPrices">
+          Estimated Total: <div id="totalPriceDisplay">${{ cart.total_price_display }} USD</div>
+        </div>
+        <div class="CheckoutDetails">
+          {% csrf_token %}
+          <button id="checkout-button">
+              <span class="checkout-text">Checkout</span>
+              <span class="checkout-spinner"></span>
+          </button>
+        </div>
+    </div>
 </div>
 {%else%}
   <div class="EmptyCart">

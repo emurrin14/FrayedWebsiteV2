@@ -92,6 +92,9 @@ class Cart(models.Model):
 
     def total_price(self):
         return sum(item.subtotal() for item in self.items.all())
+    
+    def total_price_display(self):
+       return f"{self.total_price() / 100:.2f}"
 
     @property
     def total_items(self):

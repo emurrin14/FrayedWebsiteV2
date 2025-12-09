@@ -1,15 +1,11 @@
-:root {
+:root{
   --main: #ffffff;
-  --bg: #222222;
-  --card: #ffffff;
-  --hover: #72a7db;
-  --accent: ;
-  --text: #013328;
-  --textbefore: #005c48;
-  --textopp: #2f181b;
-  --gap: 1rem;
-  --max-width: 600px;
-  --border: 1px solid #ccc;
+  --accent: #005c48;
+  --accenthover: #013328;
+  --border2px: solid #ccc 2px;
+  --border1px: solid #ccc 1px; 
+  --accenthoveropposite: #2f181b;
+  --bglight: #555555;
 }
 
 ::-webkit-scrollbar {
@@ -58,15 +54,19 @@ main {
 }
 .CartInfoTopbar p:nth-child(1) {
   flex: 3;
+  color: var(--bglight);
 }
 .CartInfoTopbar p:nth-child(2) {
   flex: 1;
+  color: var(--bglight);
 }
 .CartInfoTopbar p:nth-child(3) {
   flex: 1;
+  color: var(--bglight);
 }
 .CartInfoTopbar p:nth-child(4) {
   flex: 1;
+  color: var(--bglight);
 }
 
 .ItemContainer {
@@ -106,15 +106,54 @@ main {
   height: 100%;
   object-fit: cover;
 }
-.ItemPrice {
-  flex: 1;
-}
-.ItemQuantity {
-  flex: 1;
-}
+.ItemPrice,
+.ItemQuantity,
 .ItemTotal {
   flex: 1;
 }
+
+.CheckoutContainer{
+  display: flex;
+  width: 90%;
+  height: 8rem;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 1rem 0;
+  font-size: 1.2rem;
+}
+.checkoutPrices{
+  font-weight: 500;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+#totalPriceDisplay{
+  font-weight: 400;
+}
+#checkout-button {
+  margin-top: 1rem;
+  color: white;
+  background-color: var(--accenthover);
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 1rem;
+  transition: 0.2s all ease-in-out;
+}
+#checkout-button:hover {
+  background-color: var(--accent);
+}
+.checkout-button-processing{
+  cursor:not-allowed !important;
+  background-color: #555555 !important;
+}
+.checkout-button-processing:hover{
+  background-color: #555555 !important;
+}
+
+/* empty cart */
 .EmptyCart {
   display: flex;
   flex-direction: column;
