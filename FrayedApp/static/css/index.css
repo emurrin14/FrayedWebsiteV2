@@ -75,6 +75,16 @@
 .productFirstDivButton:hover {
   background-color: var(--accent);
 }
+@media (max-width: 650px) {
+  .productFirstDiv h1{
+    font-size: 1.5rem;
+    margin-top: 20%;
+  }
+  .productFirstDivButton {
+    font-size: 1rem;
+    margin-top: 0;
+  }
+}
 .productFigure {
   background: white;
   display: flex;
