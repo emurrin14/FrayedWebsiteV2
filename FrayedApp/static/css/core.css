@@ -420,7 +420,13 @@ background-size: 100% 0.1em;
 
 
 @media (max-width: 768px) {
-  .footerContainer{
+  .footerTop{
+    display: none;
+  }
+  .footerMiddle{
+    display: none;
+  }
+  .footerBottom{
     display: none;
   }
   .footerAccordian{
@@ -436,7 +442,9 @@ background-size: 100% 0.1em;
   bottom: 0;
   flex-direction: column;
   box-sizing: border-box;
-  padding: 0 2rem;
+}
+.accordianMenu{
+  color: white;
 }
 
 /* DEBUG OLNLY */
