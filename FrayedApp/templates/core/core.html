@@ -31,11 +31,32 @@
 <body>
   {% include 'components/topbar.html' %}
   {% include 'components/header.html' %}
+  <div class="debugPixelSize">
+    <p id="debugPixelText1"></p>-<p id="debugPixelText2"></p>
+  </div>
 
   <main>{% block content %}{% endblock %}</main>
 
   {% include 'components/footer.html' %}
 
   {% block scripts %}{% endblock %}
+
+
+<script>
+  // DEBUG ONLY
+    // Wait until DOM is ready so elements exist
+    document.addEventListener('DOMContentLoaded', function () {
+      const Pixel1 = document.getElementById("debugPixelText1");
+      const Pixel2 = document.getElementById("debugPixelText2");
+
+      function updatePixelText() {
+        Pixel1.textContent = window.innerWidth;
+        Pixel2.textContent = window.innerHeight;
+
+        requestAnimationFrame(updatePixelText);
+      }
+      updatePixelText();
+    });
+</script>
 </body>
 </html>

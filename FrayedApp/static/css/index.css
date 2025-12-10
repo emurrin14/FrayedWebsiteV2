@@ -41,6 +41,7 @@
   width: 100%;
   margin: 2rem auto;
 }
+/* Smaller screen grid breakpoint */
 @media (max-width: 820px) {
   .productGridContainer {
     grid-template-columns: repeat(2, 1fr);
@@ -51,17 +52,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: 2rem;
   font-size: 2rem;
   text-align: center;
-  padding: 1rem;
-  gap: 1rem;
+  box-sizing: border-box;
 }
 .productFirstDiv h1 {
   font-size: 2rem;
-  margin-top: 40%;
+  margin: 0;
+  padding: 0;
 }
 .productFirstDivButton {
-  margin-top: 30%;
   color: white;
   background-color: var(--accenthover);
   border: none;
@@ -75,14 +77,22 @@
 .productFirstDivButton:hover {
   background-color: var(--accent);
 }
+/* Medium Screen Rules */
+@media (max-width: 1100px) and (min-width: 651px) {
+  .productFirstDiv h1{
+    font-size: 1.7rem;
+  }
+  .productFirstDivButton {
+    padding: .8rem 1.8rem;
+  }
+}
+/* Smaller Screens */
 @media (max-width: 650px) {
   .productFirstDiv h1{
     font-size: 1.5rem;
-    margin-top: 20%;
   }
   .productFirstDivButton {
     font-size: 1rem;
-    margin-top: 0;
   }
 }
 .productFigure {

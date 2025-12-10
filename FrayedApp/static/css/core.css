@@ -438,3 +438,19 @@ background-size: 100% 0.1em;
   box-sizing: border-box;
   padding: 0 2rem;
 }
+
+/* DEBUG OLNLY */
+.debugPixelSize{
+  background-color: #ccc;
+  color: black;
+  width: 80px;
+  height: 40px;
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+}
+.debugPixelSize p{
+margin: 0;
+padding: 0;
+}

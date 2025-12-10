@@ -43,7 +43,11 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.cloudworkstations.dev",
 ]
 
-
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
 
 # Application definition
 
