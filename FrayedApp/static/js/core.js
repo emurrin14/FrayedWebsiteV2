@@ -35,24 +35,6 @@ profileBtn.addEventListener("click", () => {
   profileDropdown.classList.toggle("profileDropdownActive");
 });
 
-//Mobile Footer Accordian Buttons
-const infoBtn = document.getElementById("footerInformationBtn");
-const supportBtn = document.getElementById("footerSupportBtn");
-const socialsBtn = document.getElementById("footerSocialsBtn");
-//accordian menu toggles
-const InformationMenu = document.getElementById('');
-const SupportMenu = document.getElementById('');
-const SocialsMenu = document.getElementById('');
-
-infoBtn.addEventListener("click", () => {
-  infoBtn.classList.toggle("footerInfoActive");
-});
-supportBtn.addEventListener("click", () => {
-  supportBtn.classList.toggle("footerSupportActive");
-});
-socialsBtn.addEventListener("click", () => {
-  socialsBtn.classList.toggle("footerSocialsActive");
-});
 
 //TOPBAR
 document.addEventListener("DOMContentLoaded", function () {
@@ -121,3 +103,8 @@ function switchSocialsText() {
   }, 500);
 }
 setInterval(switchSocialsText, 5000);
+
+
+//footer accordion menus
+const accordionInfo = document.getElementById("accordianInfoBtn");
+const accordionSupport = document.getElementById("accordionSupportBtn");

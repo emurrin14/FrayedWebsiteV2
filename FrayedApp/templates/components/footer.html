@@ -83,8 +83,47 @@
     support, returns, track orders, our story, contact us
   -->
   <div class="footerAccordian">
-    <div class="accordianMenu">Information</div>
-    <div class="accordianMenu">Support</div>
+    <div class="accordianSocials">
+      <a href="https://www.tiktok.com/@frayed.studio">
+        <img src="{% static 'images/tiktok.svg' %}" alt="TikTok">
+      </a>
+      <a href="https://www.instagram.com/frayedstore/">
+        <img src="{% static 'images/instagram.svg' %}" alt="Instagram">
+      </a>
+      <a href="https://discord.gg/2eW4GfTkxy">
+        <img src="{% static 'images/discord.svg' %}" alt="Discord">
+      </a>
+    </div>
+
+
+    <div class="accordianMenu" id="accordianInfo">
+      <div id="accordianInfoSelector accordianInfoBtn">
+        <div class="accordianPlaceholder"></div>
+        <h1>Information</h1>
+        <img src="{% static 'images/downArrow.svg' %}" alt="information" class="accordianIcon">
+      </div>
+      <div id="accordianInfoActive">
+        <a href="#">Type</a>
+        <a href="#">Events</a>
+        <a href="#">Size Guide</a>
+      </div>
+    </div>
+
+    <div class="accordianMenu" id="accordianInfo">
+      <div id="accordianInfoSelector accordianSupportBtn">
+        <div class="accordianPlaceholder"></div>
+        <h1>Support</h1>
+        <img src="{% static 'images/downArrow.svg' %}" alt="information" class="accordianIcon">
+      </div>
+      <div id="accordianInfoActive">
+        <a href="#">Returns</a>
+        <a href="#">Track Orders</a>
+        <a href="#">Our Story</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+
+
   </div>
 </div>
 {% endblock %}
