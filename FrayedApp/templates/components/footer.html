@@ -94,36 +94,39 @@
         <img src="{% static 'images/discord.svg' %}" alt="Discord">
       </a>
     </div>
-
-
-    <div class="accordianMenu" id="accordianInfo">
-      <div id="accordianInfoSelector accordianInfoBtn">
+  
+    <!-- INFORMATION -->
+    <div class="accordianMenu">
+      <div class="accordianHeader">
         <div class="accordianPlaceholder"></div>
         <h1>Information</h1>
         <img src="{% static 'images/downArrow.svg' %}" alt="information" class="accordianIcon">
       </div>
-      <div id="accordianInfoActive">
+  
+      <div class="accordianContent">
         <a href="#">Type</a>
         <a href="#">Events</a>
         <a href="#">Size Guide</a>
       </div>
     </div>
-
-    <div class="accordianMenu" id="accordianInfo">
-      <div id="accordianInfoSelector accordianSupportBtn">
+  
+    <!-- SUPPORT -->
+    <div class="accordianMenu">
+      <div class="accordianHeader">
         <div class="accordianPlaceholder"></div>
         <h1>Support</h1>
         <img src="{% static 'images/downArrow.svg' %}" alt="information" class="accordianIcon">
       </div>
-      <div id="accordianInfoActive">
+  
+      <div class="accordianContent">
         <a href="#">Returns</a>
         <a href="#">Track Orders</a>
         <a href="#">Our Story</a>
         <a href="#">Contact Us</a>
       </div>
     </div>
-
-
   </div>
+  
+
 </div>
 {% endblock %}

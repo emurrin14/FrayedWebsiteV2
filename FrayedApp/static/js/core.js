@@ -106,5 +106,24 @@ setInterval(switchSocialsText, 5000);
 
 
 //footer accordion menus
-const accordionInfo = document.getElementById("accordianInfoBtn");
-const accordionSupport = document.getElementById("accordionSupportBtn");
+const accordions = document.querySelectorAll(".accordianMenu");
+
+accordions.forEach(menu => {
+  const header = menu.querySelector(".accordianHeader");
+  const content = menu.querySelector(".accordianContent");
+  const icon = menu.querySelector(".accordianIcon");
+
+  header.addEventListener("click", () => {
+    const isOpen = content.classList.contains("active");
+
+    // Close all accordion content
+    document.querySelectorAll(".accordianContent").forEach(c => c.classList.remove("active"));
+    document.querySelectorAll(".accordianIcon").forEach(i => i.classList.remove("rotate"));
+
+    // Toggle clicked item
+    if (!isOpen) {
+      content.classList.add("active");
+      icon.classList.add("rotate");
+    }
+  });
+});
