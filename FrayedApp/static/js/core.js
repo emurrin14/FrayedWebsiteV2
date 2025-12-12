@@ -86,6 +86,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+
+// UPDATE LINKS IN TOPBAR AFTER 5 SECONDS
 const socialsContainer = document.getElementById("socialsContainer");
 const socialsText = [
   '<a href="https://discord.gg/vzDV2ddt2V" target="_blank">Join Our Discord</a>',
@@ -93,16 +95,25 @@ const socialsText = [
   '<a href="https://www.instagram.com" target="_blank">Follow Our Instagram</a>',
 ];
 let current = 0;
+
+socialsContainer.innerHTML = socialsText[0];
+
 function switchSocialsText() {
   socialsContainer.style.opacity = 0;
 
   setTimeout(() => {
-    current = (current + 1) % socialsText.length
+    current = (current + 1) % socialsText.length;
     socialsContainer.innerHTML = socialsText[current];
     socialsContainer.style.opacity = 1;
   }, 500);
 }
-setInterval(switchSocialsText, 5000);
+
+setTimeout(() => {
+  switchSocialsText();
+  setInterval(switchSocialsText, 5000);
+}, 5000);
+
+
 
 
 //footer accordion menus

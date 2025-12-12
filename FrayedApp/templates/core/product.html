@@ -22,7 +22,7 @@
             </div>
             <div class="productInformation">
                 <div class="productTitle">{{ product.title }}</div>
-                <div class="productPrice">${{ product.price }}</div>
+                <div class="productPrice">${{ product.price_display }}</div>
             </div>
             <div class="productVariants">
                 <form method="post" action="{% url 'add_to_cart' product.id %}" id="addToCartForm">

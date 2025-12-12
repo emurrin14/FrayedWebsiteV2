@@ -430,7 +430,7 @@ background-size: 100% 0.1em;
     display: none;
   }
   .footerAccordian {
-    display: flex;
+    display: flex !important;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -443,6 +443,10 @@ background-size: 100% 0.1em;
     height: auto;
   }
 }
+.footerAccordian{
+  display: none;
+}
+
 .footerAccordian h1{
   color: white;
 }
@@ -452,10 +456,19 @@ background-size: 100% 0.1em;
 }
 
 
+.accordianMenu{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+.accordianPlaceholder{
+  width: 40px;
+  height: 40px;
+}
 .accordianHeader {
   display: flex;
   height: 40px;
-  width: 90%;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
@@ -468,11 +481,14 @@ background-size: 100% 0.1em;
   width: 100%;
   align-items: center;
   gap: 0.8rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: .4rem;
 }
 
 .accordianContent.active {
   display: flex;
+}
+.accordianContent.active a{
+  text-decoration: underline !important;
 }
 
 .accordianIcon {
