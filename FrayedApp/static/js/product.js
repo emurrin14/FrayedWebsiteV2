@@ -1,3 +1,13 @@
+//script for the right side of product page being sticky (only over 768 px)
+//40px topbar and 1rem padding
+const productDetails = document.querySelectorAll(".detailsContainer");
+productDetails.addEventListener( "scroll", () => {
+  
+});
+
+
+
+//script for size selection and passing json to view
 document.addEventListener("DOMContentLoaded", function () {
   const sizeButtons = document.querySelectorAll(".productSizeButtons");
   const selectedVariantInput = document.getElementById("selectedVariantId");

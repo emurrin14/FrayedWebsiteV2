@@ -6,7 +6,18 @@
 <script src="{% static 'js/product.js' %}"></script>
 {% endblock %}
 {% block content %}
-    <div class="gridContainer">
+<div class="gridContainer">
+  <div class="imageGridContainer">
+    {% for image in product.images.all %}
+    <div class="imageContainer">
+      <img src="{{ image.image.url }}" alt="{{ product.title }}">
+    </div>
+    {% endfor %}
+  </div>
+  <div class="detailsContainer"></div>
+</div>
+{% endblock %}
+    {% comment %} <div class="gridContainer">
         <div class="productImageGridContainer">
             {% for image in product.images.all %}
             <div class="imageContainer">
@@ -55,5 +66,4 @@
                   <div id="cartStatus"></div>                           
             </div>
         </div>
-    </div>
-{% endblock %}
+    </div> {% endcomment %}
