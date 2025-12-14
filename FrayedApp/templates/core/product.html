@@ -7,6 +7,7 @@
 {% endblock %}
 {% block content %}
 <div class="gridContainer">
+  <!--IMAGE GRID-->
   <div class="imageGridContainer">
     {% for image in product.images.all %}
     <div class="imageContainer">
@@ -14,8 +15,23 @@
     </div>
     {% endfor %}
   </div>
+
+  <!--MOBILE IMAGE GRID-->
+  <div class="imageGridContainerMobile">
+    {% for image in product.images.all %}
+    <div class="mobileImageContainer">
+      <img src="{{ image.image.url }}" alt="{{ product.title }}">
+    </div>
+    {% endfor %}
+  </div>
+
+  
   <div class="detailsContainer">
-    <h1>Top</h1>
+    <div class="productTags">
+      {% for tag in product.tags.all %}
+        <p>{{ tag.name }}</p>
+      {% endfor %}
+    </div>
     <p>Bottom</p>
   </div>
 </div>
