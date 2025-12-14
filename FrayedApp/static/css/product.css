@@ -31,6 +31,8 @@
   background-color: #ccc;
   height: 500px;
   transform: translateY(1rem);
+  position: sticky;
+  top: calc(80px - 1rem);
 }
 
 
