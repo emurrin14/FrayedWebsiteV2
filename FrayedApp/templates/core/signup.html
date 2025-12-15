@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <title>Login</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
@@ -27,6 +27,16 @@
         <div class="loginFormContainer">
             <form id="signupForm" method="post">
                 {% csrf_token %}
+                <!-- NAME INPUT -->
+                 <div class="nameContainer">
+                    <p>Name</p>
+                    <input id="signupInput" type="name" name="name" placeholder="Enter Your Name" required>
+                    {% if form.name.errors %}
+                    <div class="formErrors">
+                        {{ form.name.errors }}
+                    </div>
+                    {% endif %}
+                 </div>
                 <!--EMAIL INPUT-->
                 <div class="loginEmailContainer">
                     <p>Email</p>

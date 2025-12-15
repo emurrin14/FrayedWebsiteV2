@@ -4,6 +4,10 @@ from django.core.exceptions import ValidationError
 from .models import CustomUser
 
 class CustomUserCreationForm(forms.ModelForm):
+    name = forms.CharField(
+        label="Name",
+        max_length=150
+    )
     email = forms.EmailField(
         label="Email",
         widget=forms.EmailInput(attrs={"autofocus": True})
@@ -13,7 +17,7 @@ class CustomUserCreationForm(forms.ModelForm):
 
     class Meta:
         model = CustomUser
-        fields = ["email"]
+        fields = ["name", "email"]
 
     def clean_email(self):
         email = self.cleaned_data.get("email")  # must match field name
