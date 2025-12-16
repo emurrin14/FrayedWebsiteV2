@@ -16,7 +16,70 @@
     >
 </head>
 <body>
-    <div class="loginContainer">
+<div class="debugPixelSize">
+    <p id="debugPixelText1"></p>-<p id="debugPixelText2"></p>
+</div>
+    <div class="loginSignupPicture">
+        <img src="{% static 'images/landingImage0.PNG' %}">
+    </div>
+
+    <div class="loginSignupContainer">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'images/logo.png' %}">
+        </a>
+        <h1>Sign Up</h1>
+        <div class="formsContainer">
+            <form id="signupForm" method="post">
+                {% csrf_token %}
+                <!-- NAME INPUT -->
+                <div class="nameContainer">
+                    <p class="formInfoText">Name</p>
+                    <input id="signupInput" type="name" name="name" placeholder="Enter Your Name" required>
+                    {% if form.name.errors %}
+                    <div class="formErrors">
+                        {{ form.name.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+                <!--EMAIL INPUT-->
+                <div class="loginEmailContainer">
+                    <p class="formInfoText">Email</p>
+                    <input id="signupInput" type="email" name="email" placeholder="Enter your Email" required>
+                    {% if form.email.errors %}
+                    <div class="formErrors">
+                        {{ form.email.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+                <!--PASSWORD 1 INPUT-->
+                <div class="loginPasswordContainer loginPassword1Container">
+                    <p class="formInfoText">Password</p>
+                    <input type="password" name="password1" placeholder="Enter your Password" required>
+                    {% if form.password1.errors %}
+                    <div class="formErrors">
+                        {{ form.password1.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+                <!--PASSWORD 2 INPUT-->
+                <div class="loginPasswordContainer">
+                    <p class="formInfoText">Confirm Password</p>
+                    <input type="password" name="password2" placeholder="Confirm your Password" required>
+                    {% if form.non_field_errors %}
+                    <div class="formErrors">
+                        {{ form.non_field_errors }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="loginButtonContainer">
+                    <button form="signupForm" type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    {% comment %} <div class="loginContainer">
         <div class="loginLogo">
             <img src="{% static 'images/logo.png' %}"/>
         </div>
@@ -80,6 +143,22 @@
             <a href="{% url 'login' %}">Login</a>
         </div>
 
-    </div>
+    </div> {% endcomment %}
+    <script>
+        // DEBUG ONLY
+          // Wait until DOM is ready so elements exist
+          document.addEventListener('DOMContentLoaded', function () {
+            const Pixel1 = document.getElementById("debugPixelText1");
+            const Pixel2 = document.getElementById("debugPixelText2");
+      
+            function updatePixelText() {
+              Pixel1.textContent = window.innerWidth;
+              Pixel2.textContent = window.innerHeight;
+      
+              requestAnimationFrame(updatePixelText);
+            }
+            updatePixelText();
+          });
+      </script>
 </body>
 </html>
