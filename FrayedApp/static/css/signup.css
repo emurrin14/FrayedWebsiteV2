@@ -153,13 +153,31 @@ h1{
     flex-direction: row;
     justify-content: flex-end !important;
   }
+  body :nth-child(1){
+    width: 50%;
+  }
+  body :nth-child(2){
+    width: 50%;
+  }
   .loginSignupPicture{
     display:block;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .loginSignupPicture img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
   .loginSignupContainer {
     padding: 1rem 0;
     width: 28rem;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   .loginButtonContainer button:hover{
     background-color: var(--accent);
